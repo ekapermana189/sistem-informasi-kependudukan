@@ -1,3 +1,6 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+
 <div class="card card-info">
 	<div class="card-header">
 		<h3 class="card-title">
@@ -55,9 +58,9 @@
 
 							<td>
 								<a href="?page=view-tanah&kode=<?php echo $data['id_tanah']; ?>" title="Detail" class="btn btn-info btn-sm">
-									<i class="fa fa-user"></i> </a> <a href="?page=edit-tanah&kode=<?php echo $data['id_tanah']; ?>" title="Ubah" class="btn btn-success btn-sm"> <i [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ class="fa fa-edit"></i>
+									<i class="fa fa-user"></i> </a> <a href="?page=edit-tanah&kode=<?php echo $data['id_tanah']; ?>" title="Ubah" class="btn btn-success btn-sm"> <i class="fa fa-edit"></i>
 								</a>
-								<a href="?page=del-pend&kode=<?php echo $data['id_pend']; ?>" onclick="return confirm('Apakah anda yakin hapus data ini ?')" title="Hapus" class="btn btn-danger btn-sm">
+								<a href="?page=del-tanah&kode=<?php echo $data['id_tanah']; ?>" onclick="return confirm('Apakah anda yakin hapus data ini ?')" id="delete_id" title="Hapus" class="btn btn-danger btn-sm" type="submit">
 									<i class="fa fa-trash"></i>
 									</>
 							</td>
@@ -72,3 +75,5 @@
 		</div>
 	</div>
 	<!-- /.card-body -->
+
+	<!-- onclick="return confirm('Apakah anda yakin hapus data ini ?')" -->
