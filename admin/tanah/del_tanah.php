@@ -1,24 +1,23 @@
 <?php
-if(isset($_GET['kode'])){
-            $sql_hapus = "DELETE FROM tb_pdd WHERE id_pend='".$_GET['kode']."'";
-            $query_hapus = mysqli_query($koneksi, $sql_hapus);
+if (isset($_GET['kode'])) {
+    $sql_hapus = "DELETE FROM tb_tanah WHERE id_tanah='" . $_GET['kode'] . "'";
+    $query_hapus = mysqli_query($koneksi, $sql_hapus);
 
-            if ($query_hapus) {
-                echo "<script>
+    if ($query_hapus) {
+        echo "<script>
                 Swal.fire({title: 'Hapus Data Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {
-                        window.location = 'index.php?page=data-pend';
+                        window.location = 'index.php?page=data-tanah';
                     }
                 })</script>";
-                }else{
-                echo "<script>
+    } else {
+        echo "<script>
                 Swal.fire({title: 'Hapus Data Gagal',text: '',icon: 'error',confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.value) {
-                        window.location = 'index.php?page=data-pend';
+                        window.location = 'index.php?page=data-tanah';
                     }
                 })</script>";
-            }
-        }
-
+    }
+}
