@@ -1,171 +1,107 @@
 <?php
 
-    if(isset($_GET['kode'])){
-        $sql_cek = "SELECT * FROM tb_pdd WHERE id_pend='".$_GET['kode']."'";
-        $query_cek = mysqli_query($koneksi, $sql_cek);
-        $data_cek = mysqli_fetch_array($query_cek,MYSQLI_BOTH);
-    }
+if (isset($_GET['kode'])) {
+	$sql_cek = "SELECT p.id_tanah, p.id_pend, p.lokasi, p.no_tanah, p.pemanfaatan_tanah, p.tgl_tanah, k.nik, k.nama from tb_tanah p inner join tb_pdd k on p.id_pend=k.id_pend WHERE id_tanah='" . $_GET['kode'] . "'";
+	$query_cek = mysqli_query($koneksi, $sql_cek);
+	$data_cek = mysqli_fetch_array($query_cek, MYSQLI_BOTH);
+}
 ?>
 
 <div class="card card-success">
 	<div class="card-header">
 		<h3 class="card-title">
-			<i class="fa fa-edit"></i> Ubah Data</h3>
+			<i class="fa fa-edit"></i> Ubah Data
+		</h3>
 	</div>
 	<form action="" method="post" enctype="multipart/form-data">
 		<div class="card-body">
+			<input type="hidden" class="form-control" id="id_tanah" name="id_tanah" value="<?php echo $data_cek['id_tanah']; ?>" readonly />
 
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">No Sistem</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" id="id_pend" name="id_pend" value="<?php echo $data_cek['id_pend']; ?>"
-					 readonly/>
-				</div>
-			</div>
+				<label class="col-sm-2 col-form-label">Nama Pemilik</label>
+				<div class="col-sm-4">
+					<select name="id_tanah" id="id_tanah" class="form-control select2bs4" disabled>
 
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">NIK</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="nik" name="nik" value="<?php echo $data_cek['nik']; ?>"
-					/>
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Nama</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="nama" name="nama" value="<?php echo $data_cek['nama']; ?>"
-					/>
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">TTL</label>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" id="tempat_lh" name="tempat_lh" value="<?php echo $data_cek['tempat_lh']; ?>"
-					/>
-				</div>
-				<div class="col-sm-3">
-					<input type="date" class="form-control" id="tgl_lh" name="tgl_lh" value="<?php echo $data_cek['tgl_lh']; ?>"
-					/>
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Jenis Kelamin</label>
-				<div class="col-sm-3">
-					<select name="jekel" id="jekel" class="form-control">
-						<option value="">-- Pilih jekel --</option>
 						<?php
-                //menhecek data yg dipilih sebelumnya
-                if ($data_cek['jekel'] == "LK") echo "<option value='LK' selected>LK</option>";
-                else echo "<option value='LK'>LK</option>";
-
-                if ($data_cek['jekel'] == "PR") echo "<option value='PR' selected>PR</option>";
-                else echo "<option value='PR'>PR</option>";
-            ?>
+						// ambil data dari database
+						$query = "select * from tb_pdd where status='Ada'";
+						$hasil = mysqli_query($koneksi, $query);
+						while ($row = mysqli_fetch_array($hasil)) {
+						?>
+							<option value="<?php echo $row['id_pend'] ?>">
+								<?php echo $row['nik'] ?>
+								-
+								<?php echo $row['nama'] ?>
+							</option>
+						<?php
+						}
+						?>
 					</select>
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Desa</label>
+				<label class="col-sm-2 col-form-label">Lokasi</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" id="desa" name="desa" value="<?php echo $data_cek['desa']; ?>"
-					/>
+					<input type="text" class="form-control" id="lokasi" name="lokasi" value="<?php echo $data_cek['lokasi']; ?>" />
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">RT/RW</label>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" id="rt" name="rt" value="<?php echo $data_cek['rt']; ?>"
-					/>
-				</div>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" id="rw" name="rw" value="<?php echo $data_cek['rw']; ?>"
-					/>
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Agama</label>
+				<label class="col-sm-2 col-form-label">Nomor Tanah</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" id="agama" name="agama" value="<?php echo $data_cek['agama']; ?>"
-					/>
+					<input type="text" class="form-control" id="no_tanah" name="no_tanah" value="<?php echo $data_cek['no_tanah']; ?>" />
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Status Perkawinan</label>
+				<label class="col-sm-2 col-form-label">Tanggal Pembelian Tanah</label>
 				<div class="col-sm-3">
-					<select name="kawin" id="kawin" class="form-control">
-						<option value="">-- Pilih Status --</option>
-						<?php
-                //menhecek data yg dipilih sebelumnya
-                if ($data_cek['kawin'] == "Sudah") echo "<option value='Sudah' selected>Sudah</option>";
-                else echo "<option value='Sudah'>Sudah</option>";
-
-                if ($data_cek['kawin'] == "Belum") echo "<option value='Belum' selected>Belum</option>";
-				else echo "<option value='Belum'>Belum</option>";
-				
-				if ($data_cek['kawin'] == "Cerai Mati") echo "<option value='Cerai Mati' selected>Cerai Mati</option>";
-                else echo "<option value='Cerai Mati'>Cerai Mati</option>";
-
-                if ($data_cek['kawin'] == "Cerai Hidup") echo "<option value='Cerai Hidup' selected>Cerai Hidup</option>";
-                else echo "<option value='Cerai Hidup'>Cerai Hidup</option>";
-            ?>
-					</select>
+					<input type="date" class="form-control" id="tgl_lh" name="tgl_lh" value="<?php echo $data_cek['tgl_tanah']; ?>" />
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Pekerjaan</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="pekerjaan" name="pekerjaan" value="<?php echo $data_cek['pekerjaan']; ?>"
-					/>
+				<label class="col-sm-2 col-form-label">Pemanfaatan Tanah</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="pt" name="pt" value="<?php echo $data_cek['pemanfaatan_tanah']; ?>" />
 				</div>
 			</div>
 
 		</div>
+
 		<div class="card-footer">
 			<input type="submit" name="Ubah" value="Simpan" class="btn btn-success">
-			<a href="?page=data-pend" title="Kembali" class="btn btn-secondary">Batal</a>
+			<a href="?page=data-tanah" title="Kembali" class="btn btn-secondary">Batal</a>
 		</div>
 	</form>
 </div>
 
 <?php
 
-    if (isset ($_POST['Ubah'])){
-    $sql_ubah = "UPDATE tb_pdd SET 
-		nik='".$_POST['nik']."',
-		nama='".$_POST['nama']."',
-		tempat_lh='".$_POST['tempat_lh']."',
-		tgl_lh='".$_POST['tgl_lh']."',
-		jekel='".$_POST['jekel']."',
-		desa='".$_POST['desa']."',
-		rt='".$_POST['rt']."',
-		rw='".$_POST['rw']."',
-		agama='".$_POST['agama']."',
-		kawin='".$_POST['kawin']."',
-		pekerjaan='".$_POST['pekerjaan']."'
-		WHERE id_pend='".$_POST['id_pend']."'";
-    $query_ubah = mysqli_query($koneksi, $sql_ubah);
-    mysqli_close($koneksi);
+if (isset($_POST['Ubah'])) {
+	$sql_ubah = "UPDATE tb_tanah SET 
+		lokasi='" . $_POST['lokasi'] . "',
+		no_tanah='" . $_POST['no_tanah'] . "',
+		tgl_tanah='" . $_POST['tgl_lh'] . "',
+		pemanfaatan_tanah='" . $_POST['pt'] . "'
+		WHERE id_tanah='" . $_POST['id_tanah'] . "'";
+	$query_ubah = mysqli_query($koneksi, $sql_ubah);
+	mysqli_close($koneksi);
 
-    if ($query_ubah) {
-        echo "<script>
+	if ($query_ubah) {
+		echo "<script>
       Swal.fire({title: 'Ubah Data Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
       }).then((result) => {if (result.value)
-        {window.location = 'index.php?page=data-pend';
+        {window.location = 'index.php?page=data-tanah';
         }
       })</script>";
-      }else{
-      echo "<script>
+	} else {
+		echo "<script>
       Swal.fire({title: 'Ubah Data Gagal',text: '',icon: 'error',confirmButtonText: 'OK'
       }).then((result) => {if (result.value)
-        {window.location = 'index.php?page=data-pend';
+        {window.location = 'index.php?page=edit-tanah';
         }
       })</script>";
-    }}
+	}
+}
