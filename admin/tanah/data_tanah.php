@@ -1,4 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 
 <div class="card card-info">
@@ -60,7 +59,7 @@
 								<a href="?page=view-tanah&kode=<?php echo $data['id_tanah']; ?>" title="Detail" class="btn btn-info btn-sm">
 									<i class="fa fa-user"></i> </a> <a href="?page=edit-tanah&kode=<?php echo $data['id_tanah']; ?>" title="Ubah" class="btn btn-success btn-sm"> <i class="fa fa-edit"></i>
 								</a>
-								<a href="?page=del-tanah&kode=<?php echo $data['id_tanah']; ?>" onclick="return confirm('Apakah anda yakin hapus data ini ?')" id="delete_id" title="Hapus" class="btn btn-danger btn-sm" type="submit">
+								<a href="?page=del-tanah&kode=<?php echo $data['id_tanah']; ?>" id="delete_id" title="Hapus" class="btn-del btn btn-danger btn-sm" type="submit">
 									<i class="fa fa-trash"></i>
 									</>
 							</td>
@@ -75,5 +74,29 @@
 		</div>
 	</div>
 	<!-- /.card-body -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+	<script>
+		$('.btn-del').on('click', function(e) {
+			e.preventDefault();
+			const href = $(this).attr('href')
 
+			Swal.fire({
+				title: 'Apa Kamu Yakin!',
+				text: 'Data ini akan dihapus',
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Hapus Data',
+			}).then((result) => {
+				if (result.value) {
+					document.location.href = href;
+				} else {
+					Swal.fire('Terima Kasih atas konfirmasinya', 'Silahkan kembali ke halaman data', 'error');
+
+				}
+			})
+		})
+	</script>
 	<!-- onclick="return confirm('Apakah anda yakin hapus data ini ?')" -->
