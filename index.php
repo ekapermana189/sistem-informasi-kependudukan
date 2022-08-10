@@ -728,12 +728,13 @@ include "inc/koneksi.php";
 
 			Swal.fire({
 				title: 'Apa anda ingin Logout!',
-				text: 'silahkan logout',
-				icon: "warning",
+				text: 'atau kembali ke halaman utama?',
+				icon: "info",
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
 				confirmButtonText: 'Logout',
+				cancelButtonText: 'Kembali',
 			}).then((result) => {
 				if (result.value) {
 					document.location.href = href;
