@@ -1,18 +1,17 @@
 <?php
-    //Mulai Sesion
-    session_start();
-    if (isset($_SESSION["ses_username"])==""){
+//Mulai Sesion
+session_start();
+if (isset($_SESSION["ses_username"]) == "") {
 	header("location: login.php");
-    
-    }else{
-      $data_id = $_SESSION["ses_id"];
-      $data_nama = $_SESSION["ses_nama"];
-      $data_user = $_SESSION["ses_username"];
-	  $data_level = $_SESSION["ses_level"];
-    }
+} else {
+	$data_id = $_SESSION["ses_id"];
+	$data_nama = $_SESSION["ses_nama"];
+	$data_user = $_SESSION["ses_username"];
+	$data_level = $_SESSION["ses_level"];
+}
 
-    //KONEKSI DB
-    include "inc/koneksi.php";
+//KONEKSI DB
+include "inc/koneksi.php";
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +24,8 @@
 	<link rel="icon" href="dist/img/izin.png">
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -104,356 +105,356 @@
 
 						<!-- Level  -->
 						<?php
-          if ($data_level=="Administrator"){
-        ?>
-						<li class="nav-item">
-							<a href="index.php" class="nav-link">
-								<i class="nav-icon fas fa-tachometer-alt"></i>
-								<p>
-									Dashboard
-								</p>
-							</a>
-						</li>
+						if ($data_level == "Administrator") {
+						?>
+							<li class="nav-item">
+								<a href="index.php" class="nav-link">
+									<i class="nav-icon fas fa-tachometer-alt"></i>
+									<p>
+										Dashboard
+									</p>
+								</a>
+							</li>
 
-						<li class="nav-item has-treeview">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-table"></i>
-								<p>
-									Kelola Data
-									<i class="fas fa-angle-left right"></i>
-								</p>
-							</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item">
-									<a href="?page=data-pend" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Penduduk</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="?page=data-kartu" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Kartu Keluarga</p>
-									</a>
-								</li>
-							</ul>
-						</li>
+							<li class="nav-item has-treeview">
+								<a href="#" class="nav-link">
+									<i class="nav-icon fas fa-table"></i>
+									<p>
+										Kelola Data
+										<i class="fas fa-angle-left right"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="?page=data-pend" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Penduduk</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?page=data-kartu" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Kartu Keluarga</p>
+										</a>
+									</li>
+								</ul>
+							</li>
 
-						<li class="nav-item has-treeview">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-cogs"></i>
-								<p>
-									Sirkulasi Penduduk
-									<i class="fas fa-angle-left right"></i>
-								</p>
-							</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item">
-									<a href="?page=data-lahir" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Lahir</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="?page=data-mendu" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Meninggal</p>
-									</a>
-								</li>
+							<li class="nav-item has-treeview">
+								<a href="#" class="nav-link">
+									<i class="nav-icon fas fa-cogs"></i>
+									<p>
+										Sirkulasi Penduduk
+										<i class="fas fa-angle-left right"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="?page=data-lahir" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Lahir</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?page=data-mendu" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Meninggal</p>
+										</a>
+									</li>
 
-								<li class="nav-item">
-									<a href="?page=data-datang" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Pendatang</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="?page=data-pindah" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Pindah</p>
-									</a>
-								</li>
-							</ul>
-						</li>
+									<li class="nav-item">
+										<a href="?page=data-datang" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Pendatang</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?page=data-pindah" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Pindah</p>
+										</a>
+									</li>
+								</ul>
+							</li>
 
-						<li class="nav-item has-treeview">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-file"></i>
-								<p>
-									Kelola Surat
-									<i class="fas fa-angle-left right"></i>
-								</p>
-							</a>
-							<ul class="nav nav-treeview">
+							<li class="nav-item has-treeview">
+								<a href="#" class="nav-link">
+									<i class="nav-icon fas fa-file"></i>
+									<p>
+										Kelola Surat
+										<i class="fas fa-angle-left right"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
 
-								<li class="nav-item">
-									<a href="?page=suket-domisili" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Su-Ket Domisili</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="?page=suket-lahir" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Su-Ket Kelahiran</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="?page=suket-mati" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Su-Ket Kematian</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="?page=suket-datang" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Su-Ket Pendatang</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="?page=suket-pindah" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Su-Ket Pindah</p>
-									</a>
-								</li>
-							</ul>
-						</li>
+									<li class="nav-item">
+										<a href="?page=suket-domisili" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Su-Ket Domisili</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?page=suket-lahir" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Su-Ket Kelahiran</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?page=suket-mati" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Su-Ket Kematian</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?page=suket-datang" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Su-Ket Pendatang</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?page=suket-pindah" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Su-Ket Pindah</p>
+										</a>
+									</li>
+								</ul>
+							</li>
 
 
-						<li class="nav-item has-treeview">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-print"></i>
-								<p>
-									Kelola Laporan
-									<i class="fas fa-angle-left right"></i>
-								</p>
-							</a>
-							<ul class="nav nav-treeview">
+							<li class="nav-item has-treeview">
+								<a href="#" class="nav-link">
+									<i class="nav-icon fas fa-print"></i>
+									<p>
+										Kelola Laporan
+										<i class="fas fa-angle-left right"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
 
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Penduduk</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Kartu Keluarga</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Lahir</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Meninggal</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Pendatang</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Pindah</p>
-									</a>
-								</li>
-							</ul>
-						</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Penduduk</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Kartu Keluarga</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Lahir</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Meninggal</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Pendatang</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Pindah</p>
+										</a>
+									</li>
+								</ul>
+							</li>
 
-						<li class="nav-header">Setting</li>
+							<li class="nav-header">Setting</li>
 
-						<li class="nav-item">
-							<a href="?page=data-pengguna" class="nav-link">
-								<i class="nav-icon fas fa-user"></i>
-								<p>
-									Pengguna Sistem
-								</p>
-							</a>
-						</li>
-
-						<?php
-          				} elseif($data_level=="Kaur Pemerintah"){
-          				?>
-
-						<li class="nav-item">
-							<a href="index.php" class="nav-link">
-								<i class="nav-icon fas fa-tachometer-alt"></i>
-								<p>
-									Dashboard
-								</p>
-							</a>
-						</li>
-
-						<li class="nav-item has-treeview">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-table"></i>
-								<p>
-									Kelola Data
-									<i class="fas fa-angle-left right"></i>
-								</p>
-							</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item">
-									<a href="?page=data-pend" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Penduduk</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="?page=data-kartu" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Kartu Keluarga</p>
-									</a>
-								</li>
-							</ul>
-						</li>
-
-						<li class="nav-item has-treeview">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-cogs"></i>
-								<p>
-									Sirkulasi Penduduk
-									<i class="fas fa-angle-left right"></i>
-								</p>
-							</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item">
-									<a href="?page=data-lahir" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Lahir</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="?page=data-mendu" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Meninggal</p>
-									</a>
-								</li>
-
-								<li class="nav-item">
-									<a href="?page=data-datang" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Pendatang</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="?page=data-pindah" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Pindah</p>
-									</a>
-								</li>
-							</ul>
-						</li>
-
-						<li class="nav-item has-treeview">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-file"></i>
-								<p>
-									Kelola Surat
-									<i class="fas fa-angle-left right"></i>
-								</p>
-							</a>
-							<ul class="nav nav-treeview">
-
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Su-Ket Domisili</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Su-Ket Kelahiran</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Su-Ket Kematian</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Su-Ket Pendatang</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Su-Ket Pindah</p>
-									</a>
-								</li>
-							</ul>
-						</li>
-
-						<li class="nav-item has-treeview">
-							<a href="#" class="nav-link">
-								<i class="nav-icon fas fa-print"></i>
-								<p>
-									Kelola Laporan
-									<i class="fas fa-angle-left right"></i>
-								</p>
-							</a>
-							<ul class="nav nav-treeview">
-
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Penduduk</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Kartu Keluarga</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Lahir</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Meninggal</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Pendatang</p>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="#" class="nav-link">
-										<i class="nav-icon far fa-circle text-warning"></i>
-										<p>Data Pindah</p>
-									</a>
-								</li>
-							</ul>
-						</li>
-
-						<li class="nav-header">Setting</li>
+							<li class="nav-item">
+								<a href="?page=data-pengguna" class="nav-link">
+									<i class="nav-icon fas fa-user"></i>
+									<p>
+										Pengguna Sistem
+									</p>
+								</a>
+							</li>
 
 						<?php
-							}
+						} elseif ($data_level == "Kaur Pemerintah") {
+						?>
+
+							<li class="nav-item">
+								<a href="index.php" class="nav-link">
+									<i class="nav-icon fas fa-tachometer-alt"></i>
+									<p>
+										Dashboard
+									</p>
+								</a>
+							</li>
+
+							<li class="nav-item has-treeview">
+								<a href="#" class="nav-link">
+									<i class="nav-icon fas fa-table"></i>
+									<p>
+										Kelola Data
+										<i class="fas fa-angle-left right"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="?page=data-pend" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Penduduk</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?page=data-kartu" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Kartu Keluarga</p>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="nav-item has-treeview">
+								<a href="#" class="nav-link">
+									<i class="nav-icon fas fa-cogs"></i>
+									<p>
+										Sirkulasi Penduduk
+										<i class="fas fa-angle-left right"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="?page=data-lahir" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Lahir</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?page=data-mendu" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Meninggal</p>
+										</a>
+									</li>
+
+									<li class="nav-item">
+										<a href="?page=data-datang" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Pendatang</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?page=data-pindah" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Pindah</p>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="nav-item has-treeview">
+								<a href="#" class="nav-link">
+									<i class="nav-icon fas fa-file"></i>
+									<p>
+										Kelola Surat
+										<i class="fas fa-angle-left right"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
+
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Su-Ket Domisili</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Su-Ket Kelahiran</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Su-Ket Kematian</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Su-Ket Pendatang</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Su-Ket Pindah</p>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="nav-item has-treeview">
+								<a href="#" class="nav-link">
+									<i class="nav-icon fas fa-print"></i>
+									<p>
+										Kelola Laporan
+										<i class="fas fa-angle-left right"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
+
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Penduduk</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Kartu Keluarga</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Lahir</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Meninggal</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Pendatang</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Pindah</p>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="nav-header">Setting</li>
+
+						<?php
+						}
 						?>
 
 						<li class="nav-item">
-							<a onclick="return confirm('Apakah anda yakin akan keluar ?')" href="logout.php" class="nav-link">
+							<a href="logout.php" class="nav-link">
 								<i class="nav-icon fas fa-arrow-circle-right"></i>
 								<p>
 									Logout
@@ -478,172 +479,171 @@
 				<!-- /. WEB DINAMIS DISINI ############################################################################### -->
 				<div class="container-fluid">
 
-					<?php 
-      if(isset($_GET['page'])){
-          $hal = $_GET['page'];
-  
-          switch ($hal) {
-              
-				//Pengguna
-				case 'data-pengguna':
-					include "admin/pengguna/data_pengguna.php";
-					break;
-				case 'add-pengguna':
-					include "admin/pengguna/add_pengguna.php";
-					break;
-				case 'edit-pengguna':
-					include "admin/pengguna/edit_pengguna.php";
-					break;
-				case 'del-pengguna':
-					include "admin/pengguna/del_pengguna.php";
-					break;
+					<?php
+					if (isset($_GET['page'])) {
+						$hal = $_GET['page'];
 
-				//kartu KK
-				case 'data-kartu':
-					include "admin/kartu/data_kartu.php";
-					break;
-				case 'add-kartu':
-					include "admin/kartu/add_kartu.php";
-					break;
-				case 'edit-kartu':
-					include "admin/kartu/edit_kartu.php";
-					break;
-				case 'anggota':
-					include "admin/kartu/anggota.php";
-					break;
-				case 'del-anggota':
-					include "admin/kartu/del_anggota.php";
-					break;
-				case 'del-kartu':
-					include "admin/kartu/del_kartu.php";
-					break;
+						switch ($hal) {
 
-				//penduduk
-				case 'data-pend':
-					include "admin/pend/data_pend.php";
-					break;
-				case 'add-pend':
-					include "admin/pend/add_pend.php";
-					break;
-				case 'edit-pend':
-					include "admin/pend/edit_pend.php";
-					break;
-				case 'del-pend':
-					include "admin/pend/del_pend.php";
-					break;
-				case 'view-pend':
-					include "admin/pend/view_pend.php";
-					break;
+								//Pengguna
+							case 'data-pengguna':
+								include "admin/pengguna/data_pengguna.php";
+								break;
+							case 'add-pengguna':
+								include "admin/pengguna/add_pengguna.php";
+								break;
+							case 'edit-pengguna':
+								include "admin/pengguna/edit_pengguna.php";
+								break;
+							case 'del-pengguna':
+								include "admin/pengguna/del_pengguna.php";
+								break;
 
-				//lahir
-				case 'data-lahir':
-					include "admin/lahir/data_lahir.php";
-					break;
-				case 'add-lahir':
-					include "admin/lahir/add_lahir.php";
-					break;
-				case 'edit-lahir':
-					include "admin/lahir/edit_lahir.php";
-					break;
-				case 'del-lahir':
-					include "admin/lahir/del_lahir.php";
-					break;
+								//kartu KK
+							case 'data-kartu':
+								include "admin/kartu/data_kartu.php";
+								break;
+							case 'add-kartu':
+								include "admin/kartu/add_kartu.php";
+								break;
+							case 'edit-kartu':
+								include "admin/kartu/edit_kartu.php";
+								break;
+							case 'anggota':
+								include "admin/kartu/anggota.php";
+								break;
+							case 'del-anggota':
+								include "admin/kartu/del_anggota.php";
+								break;
+							case 'del-kartu':
+								include "admin/kartu/del_kartu.php";
+								break;
 
-				//mendu
-				case 'data-mendu':
-					include "admin/mendu/data_mendu.php";
-					break;
-				case 'add-mendu':
-					include "admin/mendu/add_mendu.php";
-					break;
-				case 'edit-mendu':
-					include "admin/mendu/edit_mendu.php";
-					break;
-				case 'del-mendu':
-					include "admin/mendu/del_mendu.php";
-					break;
+								//penduduk
+							case 'data-pend':
+								include "admin/pend/data_pend.php";
+								break;
+							case 'add-pend':
+								include "admin/pend/add_pend.php";
+								break;
+							case 'edit-pend':
+								include "admin/pend/edit_pend.php";
+								break;
+							case 'del-pend':
+								include "admin/pend/del_pend.php";
+								break;
+							case 'view-pend':
+								include "admin/pend/view_pend.php";
+								break;
 
-				//pindah
-				case 'data-pindah':
-					include "admin/pindah/data_pindah.php";
-					break;
-				case 'add-pindah':
-					include "admin/pindah/add_pindah.php";
-					break;
-				case 'edit-pindah':
-					include "admin/pindah/edit_pindah.php";
-					break;
-				case 'del-pindah':
-					include "admin/pindah/del_pindah.php";
-					break;
+								//lahir
+							case 'data-lahir':
+								include "admin/lahir/data_lahir.php";
+								break;
+							case 'add-lahir':
+								include "admin/lahir/add_lahir.php";
+								break;
+							case 'edit-lahir':
+								include "admin/lahir/edit_lahir.php";
+								break;
+							case 'del-lahir':
+								include "admin/lahir/del_lahir.php";
+								break;
 
-				//datang
-				case 'data-datang':
-					include "admin/datang/data_datang.php";
-					break;
-				case 'add-datang':
-					include "admin/datang/add_datang.php";
-					break;
-				case 'edit-datang':
-					include "admin/datang/edit_datang.php";
-					break;
-				case 'del-datang':
-					include "admin/datang/del_datang.php";
-					break;
-					
-				//suket
-				case 'suket-domisili':
-					include "surat/suket_domisili.php";
-					break;
-				case 'suket-lahir':
-					include "surat/suket_lahir.php";
-					break;
-				case 'suket-mati':
-					include "surat/suket_mati.php";
-					break;
-				case 'suket-datang':
-					include "surat/suket_datang.php";
-					break;
-				case 'suket-pindah':
-					include "surat/suket_pindah.php";
-					break;
-				
-					//Tanah
-				case 'data-tanah':
-					include "admin/tanah/data_tanah.php";
-					break;
-				case 'add-tanah':
-					include "admin/tanah/add_tanah.php";
-					break;
-				case 'edit-tanah':
-					include "admin/tanah/edit_tanah.php";
-					break;
-				case 'del-tanah':
-					include "admin/tanah/del_tanah.php";
-					break;
-					case 'view-tanah':
-						include "admin/tanah/view_tanah.php";
-						break;
-					
-					
-				
+								//mendu
+							case 'data-mendu':
+								include "admin/mendu/data_mendu.php";
+								break;
+							case 'add-mendu':
+								include "admin/mendu/add_mendu.php";
+								break;
+							case 'edit-mendu':
+								include "admin/mendu/edit_mendu.php";
+								break;
+							case 'del-mendu':
+								include "admin/mendu/del_mendu.php";
+								break;
 
-          
-              //default
-              default:
-                  echo "<center><h1> ERROR !</h1></center>";
-                  break;    
-          }
-      }else{
-        // Auto Halaman Home Pengguna
-          if($data_level=="Administrator"){
-              include "home/admin.php";
-              }
-          elseif($data_level=="Kaur Pemerintah"){
-              include "home/kaur.php";
-              }
-          }
-    ?>
+								//pindah
+							case 'data-pindah':
+								include "admin/pindah/data_pindah.php";
+								break;
+							case 'add-pindah':
+								include "admin/pindah/add_pindah.php";
+								break;
+							case 'edit-pindah':
+								include "admin/pindah/edit_pindah.php";
+								break;
+							case 'del-pindah':
+								include "admin/pindah/del_pindah.php";
+								break;
+
+								//datang
+							case 'data-datang':
+								include "admin/datang/data_datang.php";
+								break;
+							case 'add-datang':
+								include "admin/datang/add_datang.php";
+								break;
+							case 'edit-datang':
+								include "admin/datang/edit_datang.php";
+								break;
+							case 'del-datang':
+								include "admin/datang/del_datang.php";
+								break;
+
+								//suket
+							case 'suket-domisili':
+								include "surat/suket_domisili.php";
+								break;
+							case 'suket-lahir':
+								include "surat/suket_lahir.php";
+								break;
+							case 'suket-mati':
+								include "surat/suket_mati.php";
+								break;
+							case 'suket-datang':
+								include "surat/suket_datang.php";
+								break;
+							case 'suket-pindah':
+								include "surat/suket_pindah.php";
+								break;
+
+								//Tanah
+							case 'data-tanah':
+								include "admin/tanah/data_tanah.php";
+								break;
+							case 'add-tanah':
+								include "admin/tanah/add_tanah.php";
+								break;
+							case 'edit-tanah':
+								include "admin/tanah/edit_tanah.php";
+								break;
+							case 'del-tanah':
+								include "admin/tanah/del_tanah.php";
+								break;
+							case 'view-tanah':
+								include "admin/tanah/view_tanah.php";
+								break;
+
+
+
+
+
+								//default
+							default:
+								echo "<center><h1> ERROR !</h1></center>";
+								break;
+						}
+					} else {
+						// Auto Halaman Home Pengguna
+						if ($data_level == "Administrator") {
+							include "home/admin.php";
+						} elseif ($data_level == "Kaur Pemerintah") {
+							include "home/kaur.php";
+						}
+					}
+					?>
 
 				</div>
 			</section>
@@ -669,6 +669,9 @@
 		<!-- /.control-sidebar -->
 	</div>
 	<!-- ./wrapper -->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
 	<!-- jQuery -->
 	<script src="plugins/jquery/jquery.min.js"></script>
@@ -714,6 +717,27 @@
 			//Initialize Select2 Elements
 			$('.select2bs4').select2({
 				theme: 'bootstrap4'
+			})
+		})
+	</script>
+
+	<script>
+		$('.nav-link').on('click', function(e) {
+			e.preventDefault();
+			const href = $(this).attr('href')
+
+			Swal.fire({
+				title: 'Apa anda ingin Logout!',
+				text: 'silahkan logout',
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Logout',
+			}).then((result) => {
+				if (result.value) {
+					document.location.href = href;
+				}
 			})
 		})
 	</script>
