@@ -1,7 +1,8 @@
 <div class="card card-primary">
 	<div class="card-header">
 		<h3 class="card-title">
-			<i class="fa fa-edit"></i> Tambah Data</h3>
+			<i class="fa fa-edit"></i> Tambah Data
+		</h3>
 	</div>
 	<form action="" method="post" enctype="multipart/form-data">
 		<div class="card-body">
@@ -34,6 +35,7 @@
 						<option>- Pilih -</option>
 						<option>Administrator</option>
 						<option>Kaur Pemerintah</option>
+						<option>Masyarakat</option>
 					</select>
 				</div>
 			</div>
@@ -48,29 +50,30 @@
 
 <?php
 
-    if (isset ($_POST['Simpan'])){
-    //mulai proses simpan data
-        $sql_simpan = "INSERT INTO tb_pengguna (nama_pengguna,username,password,level) VALUES (
-        '".$_POST['nama_pengguna']."',
-        '".$_POST['username']."',
-        '".$_POST['password']."',
-        '".$_POST['level']."')";
-        $query_simpan = mysqli_query($koneksi, $sql_simpan);
-        mysqli_close($koneksi);
+if (isset($_POST['Simpan'])) {
+	//mulai proses simpan data
+	$sql_simpan = "INSERT INTO tb_pengguna (nama_pengguna,username,password,level) VALUES (
+        '" . $_POST['nama_pengguna'] . "',
+        '" . $_POST['username'] . "',
+        '" . $_POST['password'] . "',
+        '" . $_POST['level'] . "')";
+	$query_simpan = mysqli_query($koneksi, $sql_simpan);
+	mysqli_close($koneksi);
 
-    if ($query_simpan) {
-      echo "<script>
+	if ($query_simpan) {
+		echo "<script>
       Swal.fire({title: 'Tambah Data Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
       }).then((result) => {if (result.value){
           window.location = 'index.php?page=data-pengguna';
           }
       })</script>";
-      }else{
-      echo "<script>
+	} else {
+		echo "<script>
       Swal.fire({title: 'Tambah Data Gagal',text: '',icon: 'error',confirmButtonText: 'OK'
       }).then((result) => {if (result.value){
           window.location = 'index.php?page=add-pengguna';
           }
       })</script>";
-    }}
+	}
+}
      //selesai proses simpan data
