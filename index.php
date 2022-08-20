@@ -449,6 +449,74 @@ include "inc/koneksi.php";
 
 							<li class="nav-header">Setting</li>
 
+
+						<?php
+						} elseif ($data_level == "Masyarakat") {
+						?>
+
+							<li class="nav-item">
+								<a href="index.php" class="nav-link">
+									<i class="nav-icon fas fa-tachometer-alt"></i>
+									<p>
+										Dashboard
+									</p>
+								</a>
+							</li>
+							<li class="nav-item has-treeview">
+								<a href="#" class="nav-link">
+									<i class="nav-icon fas fa-table"></i>
+									<p>
+										Lihat Data
+										<i class="fas fa-angle-left right"></i>
+									</p>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="?page=data-penduduk" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Penduduk</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?page=data-kartukk" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Kartu Keluarga</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?page=data-tanahw" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Tanah</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?page=data-lahirw" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Lahir</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?page=data-meninggalw" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Meninggal</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?page=data-pendatangw" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Pendatang</p>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="?page=data-pindahw" class="nav-link">
+											<i class="nav-icon far fa-circle text-warning"></i>
+											<p>Data Pindah</p>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+
 						<?php
 						}
 						?>
@@ -627,9 +695,34 @@ include "inc/koneksi.php";
 								break;
 
 
-
-
-
+								//data-pend user
+							case 'data-penduduk':
+								include "user/pend/data_pend.php";
+								break;
+								//data-kartu user
+							case 'data-kartukk':
+								include "user/kartu/data_kartu.php";
+								break;
+								//data-tanah user
+							case 'data-tanahw':
+								include "user/tanah/data_tanah.php";
+								break;
+								//data-lahir user
+							case 'data-lahirw':
+								include "user/lahir/data_lahir.php";
+								break;
+								//data-meninggal user
+							case 'data-meninggalw':
+								include "user/meninggal/data_meninggal.php";
+								break;
+								//data-pendatang user
+							case 'data-pendatangw':
+								include "user/pendatang/data_pend.php";
+								break;
+								//data-pindah user
+							case 'data-pindahw':
+								include "user/pindah/data_pindah.php";
+								break;
 								//default
 							default:
 								echo "<center><h1> ERROR !</h1></center>";
@@ -641,6 +734,8 @@ include "inc/koneksi.php";
 							include "home/admin.php";
 						} elseif ($data_level == "Kaur Pemerintah") {
 							include "home/kaur.php";
+						} elseif ($data_level == "Masyarakat") {
+							include "home/user.php";
 						}
 					}
 					?>
