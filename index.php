@@ -454,7 +454,7 @@ include "inc/koneksi.php";
 						?>
 
 						<li class="nav-item">
-							<a href="logout.php" class="nav-link">
+							<a href="logout.php" class="nav-link trigger-logout">
 								<i class="nav-icon fas fa-arrow-circle-right"></i>
 								<p>
 									Logout
@@ -722,7 +722,7 @@ include "inc/koneksi.php";
 	</script>
 
 	<script>
-		$('.nav-link').on('click', function(e) {
+		$('.trigger-logout').on('click', function(e) {
 			e.preventDefault();
 			const href = $(this).attr('href')
 
